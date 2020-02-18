@@ -1,0 +1,38 @@
+{
+  "name": "trex-hooks",
+  "version": "1.0.0",
+  "description": "Common hooks used for antd 4.0",
+  "keywords": [
+    "antd",
+    "ant",
+    "youcash"
+  ],
+  "author": "renderz <464816158@qq.com>",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "father build",
+    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
+    "precommit": "lint-staged"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@umijs/fabric": "2.0.0",
+    "antd": "^4.0.0-rc.5",
+    "react": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.19",
+    "father": "^2.29.2",
+    "husky": "^4.0.10",
+    "lint-staged": "^10.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "sideEffects": false
+}
