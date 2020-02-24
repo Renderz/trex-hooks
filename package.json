@@ -1,6 +1,6 @@
 {
   "name": "trex-hooks",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Common hooks used for antd 4.0",
   "keywords": [
     "trex",
@@ -11,7 +11,7 @@
   "author": "renderz <464816158@qq.com>",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "father build",
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
