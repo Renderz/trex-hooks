@@ -1,11 +1,12 @@
 {
   "name": "trex-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common hooks used for antd 4.0",
   "keywords": [
+    "trex",
+    "hooks",
     "antd",
-    "ant",
-    "youcash"
+    "trex-hooks"
   ],
   "author": "renderz <464816158@qq.com>",
   "main": "dist/index.js",
