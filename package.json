@@ -1,6 +1,6 @@
 {
   "name": "trex-hooks",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Common hooks used for antd 4.0",
   "keywords": [
     "trex",
