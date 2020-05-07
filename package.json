@@ -1,6 +1,6 @@
 {
   "name": "trex-hooks",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Common hooks used for antd 4.0",
   "keywords": [
     "trex",
@@ -20,7 +20,6 @@
   "license": "MIT",
   "dependencies": {
     "@umijs/fabric": "2.0.0",
-    "antd": "^4.0.0-rc.5",
     "react": "^16.12.0"
   },
   "devDependencies": {
