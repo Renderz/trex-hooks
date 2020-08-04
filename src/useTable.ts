@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { PaginationConfig } from 'antd/es/pagination';
 
 type TableInfoType<Col> = {
   dataSource: Col[];
-  total: number;
+  total?: number;
 };
 
 interface UseTableProps<Col> {
-  defaultPagination?: PaginationConfig;
-  getTableInfo: (current: number, pageSize: number) => Promise<TableInfoType<Col> | false>;
+  defaultPagination?: any;
+  getTableInfo: (
+    current: number,
+    pageSize: number,
+    newFilters: any,
+    newSorter: any,
+  ) => Promise<TableInfoType<Col> | false>;
 }
 
 function useTable<Col = any>(props: UseTableProps<Col>) {
@@ -26,27 +30,42 @@ function useTable<Col = any>(props: UseTableProps<Col>) {
 
   const [dataSource, setDataSource] = useState<Col[]>([]);
   const [pagination, setPagination] = useState(defaultPagination);
+  const [sorter, setSorter] = useState({});
 
-  const handleQuery = async (newPagination: PaginationConfig) => {
+  const handleQuery = async (newPagination: any, newFilters: any, newSorter: any) => {
     const { current = 1, pageSize = 10 } = newPagination;
 
-    const tableInfo = await getTableInfo(current, pageSize);
+    const tableInfo = await getTableInfo(current, pageSize, newFilters, newSorter);
 
     if (tableInfo) {
       setDataSource(tableInfo.dataSource);
       const mergedPagination = { ...newPagination, total: tableInfo.total };
       setPagination(mergedPagination);
+      setSorter(sorter);
     }
   };
 
   /** 条件查询时间 */
-  const onSearch = async () => {
-    handleQuery(defaultPagination);
+  const query = () => {
+    handleQuery(defaultPagination, {}, {});
+  };
+
+  const refresh = () => {
+    handleQuery(pagination, {}, sorter);
+  };
+
+  const clear = () => {
+    setDataSource([]);
+    setPagination(defaultPagination);
   };
 
   /** 表格分页变化 */
-  const onChange = (newPagination: PaginationConfig) => {
-    handleQuery(newPagination);
+  const onChange: (newPagination: any, filters: any, sorter: any) => void = (
+    newPagination,
+    newFilters,
+    newSorter,
+  ) => {
+    handleQuery(newPagination, newFilters, newSorter);
   };
 
   const tableProps = {
@@ -57,7 +76,9 @@ function useTable<Col = any>(props: UseTableProps<Col>) {
 
   return {
     tableProps,
-    onSearch,
+    query,
+    refresh,
+    clear,
   };
 }
 

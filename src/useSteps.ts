@@ -1,12 +1,6 @@
 import { useState } from 'react';
 
-interface UseStepsProps {
-  total: number;
-}
-
-function useSteps(props: UseStepsProps) {
-  const { total } = props;
-
+function useSteps(total: number) {
   const [current, setCurrenct] = useState<number>(0);
 
   const jump = (location: number) => {
@@ -17,14 +11,18 @@ function useSteps(props: UseStepsProps) {
 
   const prev = () => {
     if (current > 0) {
-      setCurrenct(current + 1);
+      setCurrenct(current - 1);
     }
   };
 
   const next = () => {
     if (current < total - 1) {
-      setCurrenct(current - 1);
+      setCurrenct(current + 1);
     }
+  };
+
+  const reset = () => {
+    setCurrenct(0);
   };
 
   return {
@@ -32,6 +30,7 @@ function useSteps(props: UseStepsProps) {
     prev,
     next,
     jump,
+    reset,
   };
 }
 
