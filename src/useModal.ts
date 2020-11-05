@@ -9,7 +9,7 @@ export interface ModalProps {
 
 interface UseModalProps {
   onOk?: () => Promise<boolean>;
-  onCancel?: () => Promise<boolean>;
+  onCancel?: (e: any) => Promise<boolean>;
 }
 
 function useModal(props: UseModalProps) {
@@ -20,6 +20,11 @@ function useModal(props: UseModalProps) {
 
   const show = () => {
     setVisible(true);
+  };
+
+  const close = () => {
+    setConfirmLoading(false);
+    setVisible(false);
   };
 
   const ok = async () => {
@@ -38,9 +43,9 @@ function useModal(props: UseModalProps) {
     setConfirmLoading(false);
   };
 
-  const cancel = async () => {
+  const cancel = async (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     try {
-      const status = await onCancel();
+      const status = await onCancel(event);
       if (status) {
         setVisible(false);
         setConfirmLoading(false);
@@ -60,6 +65,7 @@ function useModal(props: UseModalProps) {
   return {
     modalProps,
     show,
+    close,
   };
 }
 
