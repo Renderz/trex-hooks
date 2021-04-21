@@ -37,5 +37,9 @@
         "jest",
         "tslint:latest",
         "tslint-config-prettier"
+    ],
+    "include": [
+        "./.eslintrc.js", 
+        "./src/*"
     ]
 }
